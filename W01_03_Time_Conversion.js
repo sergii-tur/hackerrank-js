@@ -31,7 +31,7 @@ Sample Output
 */
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -51,7 +51,7 @@ process.stdin.on('end', function() {
 
 function readLine() {
   return inputString[currentLine++];
-}
+} */
 
 /*
  * Complete the 'timeConversion' function below.
@@ -59,13 +59,35 @@ function readLine() {
  * The function is expected to return a STRING.
  * The function accepts STRING s as parameter.
  */
+const time12 = "03:11:20PM";
+console.log( timeConversion(time12) );
 
 function timeConversion(s) {
   // Write your code here
 
+  // let's split the string into handy chunks
+  const timeArr = s.split(":");
+  const period = timeArr[2].slice(2);
+  
+  // get rid of AM/PM
+  timeArr[2] = timeArr[2].substr(0, 2);
+
+  // increase code readability
+  let hh = timeArr[0];
+  let mm = timeArr[1];
+  let ss = timeArr[2];
+  
+  if (period === 'AM') {
+    if (hh === '12') hh = '00';
+  } 
+  if (period === 'PM') {
+    if (hh !== '12') hh = Number(hh) + 12;
+  }
+
+  return hh + ":" + mm + ":" + ss;
 }
 
-function main() {
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const s = readLine();
@@ -75,4 +97,4 @@ function main() {
   ws.write(result + '\n');
 
   ws.end();
-}
+} */
