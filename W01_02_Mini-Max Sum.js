@@ -51,7 +51,7 @@ Hints: Beware of integer overflow! Use 64-bit Integer.
 
 'use strict';
 
-process.stdin.resume();
+/* process.stdin.resume();
 process.stdin.setEncoding('utf-8');
 
 let inputString = '';
@@ -69,22 +69,39 @@ process.stdin.on('end', function() {
 
 function readLine() {
   return inputString[currentLine++];
-}
+} */
 
 /*
  * Complete the 'miniMaxSum' function below.
  *
  * The function accepts INTEGER_ARRAY arr as parameter.
  */
+const arr = [1, 3, 5, 7, 9];
+miniMaxSum(arr);
 
 function miniMaxSum(arr) {
   // Write your code here
+  const arr_sorted = arr.sort();
+  const size = arr_sorted.length;
+  let elemSum = 0;
+  
+  for (let i = 0; i < size; i++) {
+    // constrains
+    if (arr_sorted[i] < 1 || arr_sorted[i] > 1000000000) {
+      console.log("error: arr[i] must be >= 1 or <= 10^9");
+      return 0;
+    }
+
+    elemSum += arr_sorted[i];
+  }
+
+  console.log(elemSum - arr_sorted[size-1], elemSum - arr_sorted[0]);
 
 }
 
-function main() {
+/* function main() {
 
   const arr = readLine().replace(/\s+$/g, '').split(' ').map(arrTemp => parseInt(arrTemp, 10));
 
   miniMaxSum(arr);
-}
+} */
