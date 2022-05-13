@@ -60,11 +60,13 @@ and zeros: 1/6 = 0.166667.
 
 'use strict';
 
-process.stdin.resume();
+/* process.stdin.resume();
 process.stdin.setEncoding('utf-8');
 
 let inputString = '';
 let currentLine = 0;
+
+console.log('enter');
 
 process.stdin.on('data', function(inputStdin) {
   inputString += inputStdin;
@@ -78,7 +80,7 @@ process.stdin.on('end', function() {
 
 function readLine() {
   return inputString[currentLine++];
-}
+} */
 
 /*
  * Complete the 'plusMinus' function below.
@@ -86,15 +88,39 @@ function readLine() {
  * The function accepts INTEGER_ARRAY arr as parameter.
  */
 
+//const arr = [-4, 3, -9, 0, 4, 1];
+const arr = [1, 1, 1, -1, -1];
+
+plusMinus(arr);
+
 function plusMinus(arr) {
   // Write your code here
+  const arrSize = arr.length;
+  // Constrains
+  if (arrSize > 100) return 0;
+  let pos = 0, neg = 0, zero = 0;
+  
+  //console.log(arr);
 
+  for (let num of arr) {
+    // Constrains
+    if (num > 100 || num < -100) {
+      console.log('error: arr[i] should be -100 <= arr[i] <= 100');
+      return 0;
+    }
+    if (num > 0) pos++;
+    else if (num < 0) neg++;
+    else if (num === 0) zero++;
+  }
+  console.log(  (pos/arrSize).toPrecision(6) );
+  console.log(  (neg/arrSize).toPrecision(6) );
+  console.log( (zero/arrSize).toPrecision(6) );
 }
-
+/* 
 function main() {
   const n = parseInt(readLine().trim(), 10);
 
   const arr = readLine().replace(/\s+$/g, '').split(' ').map(arrTemp => parseInt(arrTemp, 10));
 
   plusMinus(arr);
-}
+} */
