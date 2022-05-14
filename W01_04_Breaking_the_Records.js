@@ -40,7 +40,7 @@ Constraints
 
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -60,7 +60,7 @@ process.stdin.on('end', function () {
 
 function readLine() {
   return inputString[currentLine++];
-}
+} */
 
 /*
  * Complete the 'breakingRecords' function below.
@@ -68,13 +68,47 @@ function readLine() {
  * The function is expected to return an INTEGER_ARRAY.
  * The function accepts INTEGER_ARRAY scores as parameter.
  */
+const scores = [10, 5, 20, 20, 4, 5, 2, 25, 1];
+//const scores = [];
+console.log( breakingRecords(scores) );
 
 function breakingRecords(scores) {
   // Write your code here
+  if (scores.length === 0) {
+    console.log("error: input array is empty");
+    return 0;
+  }
+
+  let records = [];
+  let min = scores[0];
+  let max = scores[0];
+  let nMin = 0;
+  let nMax = 0;
+  
+  for (let score of scores) {
+    if (score < 0 || score > 100000000) {
+      console.log("error: scores[i] must be greater than 0 or smaller than 10^8");
+      return 0;
+    }  
+
+    if (score < min) {
+      min = score;
+      nMin++;
+      //nMin =+ nMin;
+    }
+    if (score > max) {
+      max = score;
+      nMax++;
+    }
+    //console.log("score: " + score + " Min: " + min + " Max: " + max + " nMin: " + nMin + " nMax: " + nMax);
+  }
+  records.push(nMax, nMin);
+
+  return records;
 
 }
 
-function main() {
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const n = parseInt(readLine().trim(), 10);
@@ -86,4 +120,4 @@ function main() {
   ws.write(result.join(' ') + '\n');
 
   ws.end();
-}
+} */
