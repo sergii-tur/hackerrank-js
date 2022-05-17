@@ -45,12 +45,105 @@ Explanation
 - Print all information to the console using standard output (System.out.print() or System.out.println()).
 - Outputs must be exact (exact spaces and casing).
 */
+/* processData("S;M;plasticCup()"); // plastic cup
+processData("C;V;mobile phone"); // mobilePhone
+processData("C;C;coffee machine"); // CoffeeMachine
+processData("S;C;LargeSoftwareBook"); // large software book
+processData("C;M;white sheet of paper"); // whiteSheetOfPaper()
+processData("S;V;pictureFrame"); // picture frame */
 
+let inputStr = "S;V;iPad\r\nC;M;mouse pad\r\nC;C;code swarm\r\nS;C;OrangeHighlighter";
+processData(inputStr);
+/* processData("S;V;iPad");
+processData("C;M;mouse pad");
+processData("C;C;code swarm");
+processData("S;C;OrangeHighlighter"); */
+
+/* S;V;iPad
+C;M;mouse pad
+C;C;code swarm
+S;C;OrangeHighlighter
+ */
 function processData(input) {
   //Enter your code here
+  // Exeptions
+  if ( (input[0] !== 'S' && input[0] !== 'C') || 
+       (input[1] !== ';' || input[3] !== ';') || 
+       (input[2] !== 'M' && input[2] !== 'V' && input[2] !== 'C') ) {
+        console.log("error: invalid input");
+        return 0;
+  }
+  
+  let rawInputArr = input.split("\r\n");
+
+  for (command of rawInputArr) {
+    let inputArr = command.split(";");
+    let operation = inputArr[0];
+    let type = inputArr[1];
+    let name = inputArr[2];
+    let upperPos = 0;
+    let output = '';
+
+    //console.log("rawInputArr: ", rawInputArr);
+
+    // split operation
+    if (operation === 'S') {
+      switch (type) {
+        case 'M':
+          name = name.slice(0, -2);
+          break;
+        case 'C':
+          name = name.charAt(0).toLowerCase() + name.slice(1);
+          break;
+        case 'V':
+          break;
+        default:
+          console.log("error: second parameter after semicolon must be M, C, or V");
+          return 0;
+      }
+      
+      for (let i = 0; i < name.length; i++) {
+        //if ( isUpperCase(name[i]) ) {
+        if ( name[i] === name[i].toUpperCase() ) {
+          output = output + name.slice(upperPos, i) + " "; 
+          upperPos =+ i;
+        }
+        // last word
+        if (i === name.length-1 ) output = output + name.slice(upperPos);
+      }
+      output = output.toLowerCase();
+    }
+
+    // combine operation
+    if (operation === 'C') {
+      
+      let nameArr = name.split(' ');
+      for (let i = 1; i < nameArr.length; i++) {
+        nameArr[i] = nameArr[i].charAt(0).toUpperCase() + nameArr[i].slice(1);
+      }
+      
+      output = nameArr.join("");
+
+      switch (type) {
+        case 'M':
+          output = output + "()";
+          break;
+        case 'C':
+          output = output.charAt(0).toUpperCase() + output.slice(1);
+          break;
+        case 'V':
+          break;
+        default:
+          console.log("error: second parameter after semicolon must be M, C, or V");
+          return 0;
+      }
+    }
+
+    console.log( output.trim() );
+  }
 } 
 
-process.stdin.resume();
+/* process.stdin.resume();
 process.stdin.setEncoding("ascii");
 _input = "";
 process.stdin.on("data", function (input) {
@@ -59,4 +152,4 @@ process.stdin.on("data", function (input) {
 
 process.stdin.on("end", function () {
  processData(_input);
-});
+}); */
