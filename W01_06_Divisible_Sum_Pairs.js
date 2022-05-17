@@ -50,7 +50,7 @@ Here are 5 valid pairs when k = 3
 
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -70,7 +70,7 @@ process.stdin.on('end', function () {
 
 function readLine() {
   return inputString[currentLine++];
-}
+} */
 
 /*
  * Complete the 'divisibleSumPairs' function below.
@@ -81,13 +81,43 @@ function readLine() {
  *  2. INTEGER k
  *  3. INTEGER_ARRAY ar
  */
+const n = 6; 
+const k = 5;
+const ar = [1, 2, 3, 4, 5, 6];
+// Output 3
+
+
+console.log( divisibleSumPairs(n, k, ar) );
 
 function divisibleSumPairs(n, k, ar) {
   // Write your code here
+  // Constrains
+  if (n < 2 || n > 100) return 0;
+  if (k < 1 || k > 100) return 0;
+
+  const size = ar.length;
+  if (n !== size) {
+    console.log("error: first argument n != array size");
+    return 0;
+  }
+
+  let nPairs = 0;
+
+  for (let i = 0; i < size-1; i++) {
+    if (ar[i] < 1 || ar[i] > 100) return 0; // Constrains
+    for (let j = i+1; j <= size; j++) {
+      if (i < j && (ar[i]+ar[j]) % k === 0) {
+        nPairs++;
+        //console.log("(" + ar[i] + ", " + ar[j] + ")");
+      }
+    }
+  }
+
+  return nPairs;
 
 }
 
-function main() {
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const firstMultipleInput = readLine().replace(/\s+$/g, '').split(' ');
@@ -103,4 +133,4 @@ function main() {
   ws.write(result + '\n');
 
   ws.end();
-}
+} */

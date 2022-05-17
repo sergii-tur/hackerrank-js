@@ -54,16 +54,7 @@ processData("S;V;pictureFrame"); // picture frame */
 
 let inputStr = "S;V;iPad\r\nC;M;mouse pad\r\nC;C;code swarm\r\nS;C;OrangeHighlighter";
 processData(inputStr);
-/* processData("S;V;iPad");
-processData("C;M;mouse pad");
-processData("C;C;code swarm");
-processData("S;C;OrangeHighlighter"); */
 
-/* S;V;iPad
-C;M;mouse pad
-C;C;code swarm
-S;C;OrangeHighlighter
- */
 function processData(input) {
   //Enter your code here
   // Exeptions
@@ -84,8 +75,6 @@ function processData(input) {
     let upperPos = 0;
     let output = '';
 
-    //console.log("rawInputArr: ", rawInputArr);
-
     // split operation
     if (operation === 'S') {
       switch (type) {
@@ -103,7 +92,6 @@ function processData(input) {
       }
       
       for (let i = 0; i < name.length; i++) {
-        //if ( isUpperCase(name[i]) ) {
         if ( name[i] === name[i].toUpperCase() ) {
           output = output + name.slice(upperPos, i) + " "; 
           upperPos =+ i;
