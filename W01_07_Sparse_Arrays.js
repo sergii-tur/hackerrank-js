@@ -1,12 +1,12 @@
 /* 
-W1_07_Sparse_Arrays.js
+W01_07_Sparse_Arrays.js
 
 There is a collection of input strings and a collection of query strings. 
 For each query string, determine how many times it occurs in the list of input strings. 
 Return an array of the results. 
 
 Example
-strings = ['ab', 'ab', abc']
+strings = ['ab', 'ab', 'abc']
 queries = ['ab', 'abc', 'bc']
 There are 2 instances of 'ab', 1 of 'abc' and 0 of 'bc'.
 For each query, add an element to the return array, results = [2, 1, 0]
@@ -96,7 +96,7 @@ Sample Output 3
 
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -116,7 +116,7 @@ process.stdin.on('end', function () {
 
 function readLine() {
   return inputString[currentLine++];
-}
+} */
 
 /*
  * Complete the 'matchingStrings' function below.
@@ -126,13 +126,40 @@ function readLine() {
  *  1. STRING_ARRAY strings
  *  2. STRING_ARRAY queries
  */
+const strings = ['ab', 'ab', 'abc'];
+const queries = ['ab', 'abc', 'bc'];
+
+console.log( matchingStrings(strings, queries) );
 
 function matchingStrings(strings, queries) {
   // Write your code here
+  // Constrains
+  if (strings.length < 1 || strings.length > 1000) return 0;
+  if (queries.length < 1 || queries.length > 1000) return 0;
+
+  let results = [];
+  let matches = 0;
+
+  for (const query of queries) {
+    // Constrains
+    if (query.length < 1 || query.length > 20) return 0;
+    
+    for (const string of strings) {
+      // Constrains
+      if (string.length < 1 || string.length > 20) return 0;
+      
+      if (query === string) matches++;
+    }
+    
+    results.push(matches);
+    matches = 0;
+  }
+
+  return results;
 
 }
 
-function main() {
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const stringsCount = parseInt(readLine().trim(), 10);
@@ -158,4 +185,4 @@ function main() {
   ws.write(res.join('\n') + '\n');
 
   ws.end();
-}
+} */
