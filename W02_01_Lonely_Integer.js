@@ -29,7 +29,7 @@ It is guaranteed that n is an odd number and that there is one unique element.
 
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -50,7 +50,7 @@ process.stdin.on('end', function () {
 function readLine() {
   return inputString[currentLine++];
 }
-
+ */
 /*
  * Complete the 'lonelyinteger' function below.
  *
@@ -58,12 +58,33 @@ function readLine() {
  * The function accepts INTEGER_ARRAY a as parameter.
  */
 
+//let a = [1, 2, 3, 4, 3, 2, 1];
+let a = [7, 1, 3, 1, 4, 4, 3];
+console.log( lonelyinteger(a) );
+//lonelyinteger(a);
 function lonelyinteger(a) {
   // Write your code here
+  let size = a.length;
+  if (size === 1) return a[0];
+  
+  let isLonely = false;
 
+  for (let i = 0; i < size; i++) {
+    for (let j = 0; j < size; j++) {
+      if (j !== i) {
+        if (a[i] === a[j]) {
+          isLonely = false;
+          break;
+        } else {
+          isLonely = true;
+        }
+      }
+    }
+    if (isLonely) return a[i];
+  }
 }
 
-function main() {
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const n = parseInt(readLine().trim(), 10);
@@ -75,4 +96,4 @@ function main() {
   ws.write(result + '\n');
 
   ws.end();
-}
+} */
