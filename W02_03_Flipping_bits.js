@@ -47,7 +47,7 @@ and doing the flipping we get 11111111111111111111111111111110 which in turn is
 
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -67,7 +67,7 @@ process.stdin.on('end', function () {
 
 function readLine() {
   return inputString[currentLine++];
-}
+} */
 
 /*
  * Complete the 'flippingBits' function below.
@@ -75,13 +75,17 @@ function readLine() {
  * The function is expected to return a LONG_INTEGER.
  * The function accepts LONG_INTEGER n as parameter.
  */
+flippingBits(2147483647);
 
 function flippingBits(n) {
   // Write your code here
-
+  // Constraints
+  if ( n < 0 || n > Math.pow(2, 32) ) return 0;
+  
+  return (~n) >>> 0;
 }
 
-function main() {
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const q = parseInt(readLine().trim(), 10);
@@ -95,4 +99,4 @@ function main() {
   }
 
   ws.end();
-}
+} */
