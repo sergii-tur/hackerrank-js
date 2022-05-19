@@ -40,7 +40,7 @@ Constraints
 
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -60,7 +60,7 @@ process.stdin.on('end', function () {
 
 function readLine() {
   return inputString[currentLine++];
-}
+} */
 
 /*
  * Complete the 'gradingStudents' function below.
@@ -68,13 +68,30 @@ function readLine() {
  * The function is expected to return an INTEGER_ARRAY.
  * The function accepts INTEGER_ARRAY grades as parameter.
  */
+let grades = [84, 29, 38];
+console.log( gradingStudents(grades) );
 
 function gradingStudents(grades) {
   // Write your code here
+  // Constrains
+  const size = grades.length;
+  if (size < 1 || size > 60) return 0;
 
+  let addUp = 0;
+  let gradesRounded = [];
+
+  for (let i = 0; i < size; i++) {
+    // Constrains
+    if (grades[i] < 0 || grades[i] > 100) return 0;
+
+    addUp = 5 - (grades[i] % 5);
+    if (addUp < 3 && grades[i] >= 38) gradesRounded.push(grades[i] + addUp);
+    else gradesRounded.push(grades[i]);
+  }
+  return gradesRounded;
 }
 
-function main() {
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const gradesCount = parseInt(readLine().trim(), 10);
@@ -91,4 +108,4 @@ function main() {
   ws.write(result.join('\n') + '\n');
 
   ws.end();
-}
+} */
