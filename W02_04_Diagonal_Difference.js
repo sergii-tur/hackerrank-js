@@ -61,7 +61,7 @@ Note: |x| is the absolute value of x
 
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -81,7 +81,7 @@ process.stdin.on('end', function () {
 
 function readLine() {
   return inputString[currentLine++];
-}
+} */
 
 /*
  * Complete the 'diagonalDifference' function below.
@@ -89,13 +89,28 @@ function readLine() {
  * The function is expected to return an INTEGER.
  * The function accepts 2D_INTEGER_ARRAY arr as parameter.
  */
+//let arr = [[1, 2, 3], [4, 5, 6], [9, 8, 9]];
+let arr = [[11, 2, 4], [4, 5, 6], [10, 8, -12]]; // 15
+
+console.log( diagonalDifference(arr) );
 
 function diagonalDifference(arr) {
   // Write your code here
+  let diagSum1 = 0;
+  let diagSum2 = 0;
+
+  for (let i = 0; i < arr.length; i++) {
+    for (let j = 0; j < arr.length; j++) {
+      if (i === j) diagSum1 += arr[i][j];
+    }
+    diagSum2 += arr[i][arr.length - (i+1)];
+  }
+  
+  return Math.abs(diagSum1 - diagSum2);
 
 }
 
-function main() {
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const n = parseInt(readLine().trim(), 10);
@@ -111,4 +126,4 @@ function main() {
   ws.write(result + '\n');
 
   ws.end();
-}
+} */
