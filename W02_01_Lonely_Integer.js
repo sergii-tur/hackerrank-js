@@ -59,8 +59,10 @@ function readLine() {
  */
 
 //let a = [1, 2, 3, 4, 3, 2, 1];
-let a = [7, 1, 3, 1, 4, 4, 3];
+let a = [1, 3, 1, 4, 7, 4, 3];
+let b = ["ab", "hello", "unique", "cool", "hello", "cool", "ab"];
 console.log( lonelyinteger(a) );
+console.log( lonelyintegerXOR(a) );
 //lonelyinteger(a);
 function lonelyinteger(a) {
   // Write your code here
@@ -83,7 +85,18 @@ function lonelyinteger(a) {
     if (isLonely) return a[i];
   }
 }
+// Bitwise XORing any number x with 0 yields x
+function lonelyintegerXOR(a) {
+  let  result = 0;
+  console.log("lonelyintegerXOR: ");
+  for (let element of a) {
+    console.log(result + " ^ " + element + " = " + (result^element) );
+    result = result ^ element;
+    
+  }
 
+  return result;
+}
 /* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
