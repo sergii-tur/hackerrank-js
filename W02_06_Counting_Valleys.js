@@ -40,7 +40,7 @@ Sample Output
 1
 
 Explanation
-f we represent _ as sea level, a step up as /, and a step down as \, the hike can be drawn as:
+if we represent _ as sea level, a step up as /, and a step down as \, the hike can be drawn as:
 _/\      _
    \    /
     \/\/
@@ -51,7 +51,7 @@ The hiker enters and leaves one valley.
 
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -71,7 +71,7 @@ process.stdin.on('end', function () {
 
 function readLine() {
   return inputString[currentLine++];
-}
+} */
 
 /*
  * Complete the 'countingValleys' function below.
@@ -81,13 +81,30 @@ function readLine() {
  *  1. INTEGER steps
  *  2. STRING path
  */
+const steps = 22; 
+const path = 'UDUDUUUDUDDDDUDDUDUUUD';
+
+console.log( countingValleys(steps, path) );
 
 function countingValleys(steps, path) {
   // Write your code here
+  let valleys = 0;
+  let currLevel = 0;
+  let prevLevel = 0;
 
+  for (let i = 0; i < steps; i++) {
+    prevLevel = currLevel;
+    
+    if (path[i] === 'U') currLevel++;
+    else currLevel--;
+    
+    if ( prevLevel < 0 && currLevel === 0) valleys++;
+  }
+
+  return valleys;
 }
 
-function main() {
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const steps = parseInt(readLine().trim(), 10);
@@ -99,4 +116,4 @@ function main() {
   ws.write(result + '\n');
 
   ws.end();
-}
+} */
