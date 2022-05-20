@@ -90,12 +90,20 @@ function readLine() {
  * The function accepts 2D_INTEGER_ARRAY arr as parameter.
  */
 //let arr = [[1, 2, 3], [4, 5, 6], [9, 8, 9]];
-let arr = [[11, 2, 4], [4, 5, 6], [10, 8, -12]]; // 15
+//let arr = [[11, 2, 4], [4, 5, 6], [10, 8, -12]]; // 15
+let arr = [
+  [11, 2, 4, 3, 5], 
+  [4, 5, 6, 22, 1], 
+  [75, 8, 10, 8, -12], 
+  [4, 89, -2, 9, 55], 
+  [5, 4, 4, 31, 62]
+]; // 15
 
 console.log( diagonalDifference(arr) );
 
 function diagonalDifference(arr) {
   // Write your code here
+  console.table(arr);
   let diagSum1 = 0;
   let diagSum2 = 0;
 
