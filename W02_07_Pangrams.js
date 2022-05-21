@@ -1,14 +1,17 @@
 /*
 W02_07_Pangrams.js
 
-A pangram is a string that contains every letter of the alphabet. Given a sentence determine whether it is a pangram in the English alphabet. Ignore case. Return either pangram or not pangram as appropriate.
+A pangram is a string that contains every letter of the alphabet. 
+Given a sentence determine whether it is a pangram in the English alphabet. Ignore case. 
+Return either pangram or not pangram as appropriate.
 
 Example
 s = 'The quick brown fox jumps over lazy dog'
 The string contains all letters in the English alphabet, so return pangram.
 
 Function Description
-Complete the function pangrams in the editor below. It should return the string pangram if the input string is a pangram. Otherwise, it should return not pangram.
+Complete the function pangrams in the editor below. It should return the string pangram if the input string is a pangram. 
+Otherwise, it should return not pangram.
 pangrams has the following parameter(s):
 string s: a string to test
 
@@ -45,7 +48,7 @@ The string lacks an x.
 
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -65,7 +68,7 @@ process.stdin.on('end', function () {
 
 function readLine() {
   return inputString[currentLine++];
-}
+} */
 
 /*
  * Complete the 'pangrams' function below.
@@ -73,13 +76,25 @@ function readLine() {
  * The function is expected to return a STRING.
  * The function accepts STRING s as parameter.
  */
-
+let s = 'The quick brown fox jumps over lazy dog';
+console.log( pangrams(s) );
+//pangrams(s);
 function pangrams(s) {
   // Write your code here
+  // Solution without using RegEx
+  s = s.toLowerCase();
+  let result = 'pangram';
 
+  for (let i = 97; i <= 122; i++) {
+    if( !s.includes(String.fromCharCode(i)) ) {
+      result = 'not pangram';
+      break;
+    }
+  }
+  return result;
 }
 
-function main() {
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const s = readLine();
@@ -89,4 +104,4 @@ function main() {
   ws.write(result + '\n');
 
   ws.end();
-}
+} */

@@ -82,7 +82,7 @@ function readLine() {
  *  2. STRING path
  */
 const steps = 22; 
-const path = 'UDUDUUUDUDDDDUDDUDUUUD';
+const path = 'UDUDUUUDUDDDDUDDUDUUUD'; // 2
 
 console.log( countingValleys(steps, path) );
 
