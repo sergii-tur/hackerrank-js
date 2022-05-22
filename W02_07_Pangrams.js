@@ -78,7 +78,7 @@ function readLine() {
  */
 let s = 'The quick brown fox jumps over lazy dog';
 console.log( pangrams(s) );
-//pangrams(s);
+
 function pangrams(s) {
   // Write your code here
   // Solution without using RegEx

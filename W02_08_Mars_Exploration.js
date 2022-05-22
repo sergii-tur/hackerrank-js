@@ -43,7 +43,7 @@ We print the number of changed letters, which is 1.
 
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -63,7 +63,7 @@ process.stdin.on('end', function () {
 
 function readLine() {
   return inputString[currentLine++];
-}
+} */
 
 /*
  * Complete the 'marsExploration' function below.
@@ -71,13 +71,28 @@ function readLine() {
  * The function is expected to return an INTEGER.
  * The function accepts STRING s as parameter.
  */
+const s = 'SOSTOT'; // SOSSOSSOSSOS Output 3
+//const s = '1OS2PS3QS4OR';
+console.log( marsExploration(s) );
 
 function marsExploration(s) {
   // Write your code here
+  const strLength = s.length; 
+  // Constrains
+  if (strLength % 3 !== 0 || strLength < 0 || strLength > 99) return 0;
+  
+  let errors = 0;
+  
+  for (let i = 0; i < strLength; i += 3) {
+    if (s[i] !== 'S') errors++;
+    if (s[i+1] !== 'O') errors++;
+    if (s[i+2] !== 'S') errors++;
+  }
 
+  return errors;
 }
 
-function main() {
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const s = readLine();
@@ -87,4 +102,4 @@ function main() {
   ws.write(result + '\n');
 
   ws.end();
-}
+} */
