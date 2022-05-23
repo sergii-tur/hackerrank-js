@@ -10,7 +10,7 @@ Example
 A = [0, 1]
 B = [0, 2]
 k = 1
-A valid A', B'is A' = [1, 0] and B'= [0, 2]: 1 + 0 >= 1 and 0 + 2 >= 1.
+A valid A', B' is A' = [1, 0] and B'= [0, 2]: 1 + 0 >= 1 and 0 + 2 >= 1.
 Return YES
 
 Function description
@@ -68,7 +68,7 @@ A'and B', there must be at least three numbers in A that are greater than 1.
 
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -88,7 +88,7 @@ process.stdin.on('end', function () {
 
 function readLine() {
   return inputString[currentLine++];
-}
+} */
 
 /*
  * Complete the 'twoArrays' function below.
@@ -99,13 +99,43 @@ function readLine() {
  *  2. INTEGER_ARRAY A
  *  3. INTEGER_ARRAY B
  */
+/*  
+Example
+A = [0, 1]
+B = [0, 2]
+k = 1
+A valid A', B' is A' = [1, 0] and B'= [0, 2]: 
+1 + 0 >= 1 
+0 + 2 >= 1
+Return YES
+*/
+let k = 5;
+let A = [0, 1];
+let B = [0, 2];
+//A = [2, 1, 3];
+//B = [7, 8, 9];
+A = [1, 2, 2, 1]
+B = [3, 3, 3, 4]
+
+console.log( twoArrays(k, A, B) );
 
 function twoArrays(k, A, B) {
   // Write your code here
+  let result = 'YES';
+  A = A.sort(function(a, b) {return a - b}); // asc sort
+  B = B.sort(function(a, b) {return b - a}); // desc sort
 
+  for (let i = 0; i < A.length; i++) {
+    if (A[i] + B[i] < k) {
+      result = 'NO';
+      break;
+    }
+  }
+  
+  return result;
 }
 
-function main() {
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const q = parseInt(readLine().trim(), 10);
@@ -127,4 +157,4 @@ function main() {
   }
 
   ws.end();
-}
+} */
