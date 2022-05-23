@@ -43,7 +43,7 @@ Constrains
 
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -63,7 +63,7 @@ process.stdin.on('end', function () {
 
 function readLine() {
   return inputString[currentLine++];
-}
+} */
 
 /*
  * Complete the 'birthday' function below.
@@ -75,12 +75,36 @@ function readLine() {
  *  3. INTEGER m
  */
 
+/* 
+s = [2, 2, 1, 3, 2]
+d = 4
+m = 2 
+*/
+const s = [2, 2, 1, 3, 2]; // 2
+const d = 4;
+const m = 2;
+
+console.log( birthday(s, d, m) );
+
 function birthday(s, d, m) {
   // Write your code here
+  let nWays = 0;
+  let sum = 0;
 
+  for (let i = 0; i <= s.length-m; i++) {
+    for (let j = i; j < i+m; j++) {
+      sum += s[j];
+    }
+    
+    if (sum === d) nWays++;
+    
+    sum = 0; // reset sum
+  }
+
+  return nWays;
 }
 
-function main() {
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const n = parseInt(readLine().trim(), 10);
@@ -98,4 +122,4 @@ function main() {
   ws.write(result + '\n');
 
   ws.end();
-}
+} */
