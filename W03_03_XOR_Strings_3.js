@@ -33,8 +33,23 @@ The XOR of the two strings 10101 and 00101 is
 1 XOR 0, 0 XOR 0, 1 XOR 1, 0 XOR 0, 1 XOR 1 = 10000  
 
 */
+let s = '10101';
+let t = '00101';
 
+console.log( stringsXOR(s, t) );
 function stringsXOR(s, t) {
+
+  let res = '';
+  for(let i = 0; i < s.length; i++) {
+      if(s[i] === t[i])
+          res += '0';
+      else
+          res += '1';
+  }
+
+  return res;
+}
+/* function stringsXOR(s, t) {
 
   let res = '';
   for(let i = 0; i < s.length; i++) {
@@ -45,4 +60,4 @@ function stringsXOR(s, t) {
   }
 
   return res;
-}
+} */
