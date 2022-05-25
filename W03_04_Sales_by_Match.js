@@ -50,7 +50,7 @@ There are three pairs of socks.
 
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -71,7 +71,7 @@ process.stdin.on('end', function () {
 function readLine() {
   return inputString[currentLine++];
 }
-
+ */
 /*
  * Complete the 'sockMerchant' function below.
  *
@@ -81,12 +81,37 @@ function readLine() {
  *  2. INTEGER_ARRAY ar
  */
 
+let ar = [10, 20, 20, 10, 20, 30, 50, 10, 20];
+ar = [10, 20, 20, 20, 30, 30, 30, 30, 30, 40, 40, 50]; //4
+const n = ar.length;
+// [10, 10, 10, 20, 20, 20, 20, 30, 50]
+//   0   1   2   3   4   5   6   7   8
+console.log( sockMerchant(n, ar) );
+
 function sockMerchant(n, ar) {
   // Write your code here
+  let pairs = 0;
+  let arSorted = ar.sort((a, b) => a - b);
+  
+  //console.log(arSorted);  
+  
+  for (let i = 0; i < n; i += 2) {
+    if (arSorted[i+1] === undefined) break;
+
+    if (arSorted[i] === arSorted[i+1]) {
+      //console.log("Pair: ", arSorted[i], arSorted[i+1]);
+      pairs++;
+    } else {
+      //console.log("Not a pair: ", arSorted[i], arSorted[i+1]);
+      i = i-1;
+    }
+  }
+  
+  return pairs;
 
 }
 
-function main() {
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const n = parseInt(readLine().trim(), 10);
@@ -98,4 +123,4 @@ function main() {
   ws.write(result + '\n');
 
   ws.end();
-}
+} */
