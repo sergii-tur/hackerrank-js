@@ -31,7 +31,7 @@ It is guaranteed that each type is 1, 2, 3, 4, or 5.
 
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -51,7 +51,7 @@ process.stdin.on('end', function () {
 
 function readLine() {
   return inputString[currentLine++];
-}
+} */
 
 /*
  * Complete the 'migratoryBirds' function below.
@@ -60,12 +60,38 @@ function readLine() {
  * The function accepts INTEGER_ARRAY arr as parameter.
  */
 
-function migratoryBirds(arr) {
-  // Write your code here
+let arr = [];
 
+for (let i = 0; i < 10; i++) {
+  arr[i] = Math.floor(Math.random() * 5) + 1;
 }
 
-function main() {
+console.log(migratoryBirds(arr));
+
+function migratoryBirds(arr) {
+  // Write your code here
+  let arrSorted = arr.sort((a, b) => a - b);
+  const size = arrSorted.length;
+  let frequencyArr = [0, 0, 0, 0, 0, 0];
+
+  //console.log(arrSorted);
+
+  for (let i = 0; i < size; i++) {
+    frequencyArr[arrSorted[i]]++;
+  }
+  
+  //console.table(frequencyArr);
+
+  let indexID = 1;
+  
+  for (let i = 1; i < frequencyArr.length; i++) {
+    if (frequencyArr[indexID] < frequencyArr[i]) indexID = i;
+  }
+
+  return indexID;
+}
+
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const arrCount = parseInt(readLine().trim(), 10);
@@ -77,4 +103,4 @@ function main() {
   ws.write(result + '\n');
 
   ws.end();
-}
+} */
