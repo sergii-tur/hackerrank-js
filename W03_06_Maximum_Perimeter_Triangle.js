@@ -46,7 +46,7 @@ The triangle (1, 2, 3) is degenerate and thus can't be constructed, so we print 
 
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -66,7 +66,7 @@ process.stdin.on('end', function () {
 
 function readLine() {
   return inputString[currentLine++];
-}
+} */
 
 /*
  * Complete the 'maximumPerimeterTriangle' function below.
@@ -74,13 +74,33 @@ function readLine() {
  * The function is expected to return an INTEGER_ARRAY.
  * The function accepts INTEGER_ARRAY sticks as parameter.
  */
+let sticks = [];
+let randTo = 10;
+for (let i = 0; i < Math.floor(Math.random() * randTo) + 3; i++) {
+  sticks[i] = Math.floor(Math.random() * randTo) + 1;
+}
+//sticks = [1, 1, 2, 3, 4, 8];
+//sticks = [1, 2, 3];
+
+console.log( maximumPerimeterTriangle(sticks) );
 
 function maximumPerimeterTriangle(sticks) {
   // Write your code here
+  sticks.sort((a, b) => a - b);
+  console.table(sticks);
 
+  for (let i = sticks.length-1; i >= 0; i--) {
+    
+    if (i >= 2 && (sticks[i-2] + sticks[i-1]) > sticks[i]) {
+      return [sticks[i-2], sticks[i-1], sticks[i]];
+    }
+
+  }
+
+  return [-1];
 }
 
-function main() {
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const n = parseInt(readLine().trim(), 10);
@@ -92,4 +112,4 @@ function main() {
   ws.write(result.join(' ') + '\n');
 
   ws.end();
-}
+} */
