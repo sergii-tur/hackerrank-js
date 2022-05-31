@@ -11,7 +11,7 @@ You need to find the lexicographically smallest zig zag sequence of the given ar
 
 Example
 a = [2, 3, 5, 1, 4]
-Now if we permute the array as [1, 4, 5, 3, 2], he result is a zig zag sequence.
+Now if we permute the array as [1, 4, 5, 3, 2], the result is a zig zag sequence.
 
 Debug the given function findZigZagSequence to return the appropriate zig zag sequence for the given input array.
 Note: You can modify at most three lines in the given code. You cannot add or remove lines of code.
@@ -30,3 +30,31 @@ Output Format
 For each test cases, print the elements of the transformed zig zag sequence in a single line.
 
 */
+let a = [1, 2, 3, 7, 5, 6, 4];
+
+findZigZagSequence(a);
+
+function findZigZagSequence(a) {
+  let n = a.length; 
+  a.sort((a,b) => a - b);
+
+  let mid = ((n + 1)/2) - 1; // 1
+  swap(a, mid, n-1);
+
+  let st = mid + 1;
+  let ed = n - 2; // 2
+  
+  while(st <= ed) {
+    swap(a, st, ed);
+    st = st + 1;
+    ed = ed - 1; // 3
+  }
+  
+  console.table(a);
+}
+
+function swap(array, x, y) {
+  let temp = array[x];
+  array[x] = array[y];
+  array[y] = temp;
+}

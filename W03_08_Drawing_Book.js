@@ -42,7 +42,7 @@ Constraints
 
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -62,7 +62,7 @@ process.stdin.on('end', function () {
 
 function readLine() {
   return inputString[currentLine++];
-}
+} */
 
 /*
  * Complete the 'pageCount' function below.
@@ -73,12 +73,33 @@ function readLine() {
  *  2. INTEGER p
  */
 
+let n = 11;
+let p = 6;
+
+console.log( pageCount(n, p) );
+
 function pageCount(n, p) {
   // Write your code here
+  let turns = 0;
+  // [0|1 2|3 4|5 6|7 8|9 10|11 ]
+  if (p <= n/2) {
+    console.log("Front page");
+    for (let i = 1; i < n; i++) {
+      if (i % 2 === 0) turns++;
+      if (i === p) break;
+    }
+  } else {
+    console.log("Last page");
+    for (let i = n; i > 0; i--) {
+      if (i !== n && i % 2 !== 0) turns++;
+      if (i === p) break;
+    }
+  }
 
+  return turns;
 }
 
-function main() {
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const n = parseInt(readLine().trim(), 10);
@@ -90,4 +111,4 @@ function main() {
   ws.write(result + '\n');
 
   ws.end();
-}
+} */
