@@ -43,7 +43,7 @@ To perform d = 4 left rotations, the array undergoes the following sequence of c
 
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -63,7 +63,7 @@ process.stdin.on('end', function () {
 
 function readLine() {
   return inputString[currentLine++];
-}
+} */
 
 /*
  * Complete the 'rotateLeft' function below.
@@ -74,12 +74,19 @@ function readLine() {
  *  2. INTEGER_ARRAY arr
  */
 
+let arr = [1, 2, 3, 4, 5];
+
+console.log( rotateLeft(4, arr) );
+
 function rotateLeft(d, arr) {
   // Write your code here
-
+  const subArr = arr.splice(0, d);
+  arr = arr.concat(subArr);
+  
+  return arr;
 }
 
-function main() {
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const firstMultipleInput = readLine().replace(/\s+$/g, '').split(' ');
@@ -95,4 +102,4 @@ function main() {
   ws.write(result.join(' ') + '\n');
 
   ws.end();
-}
+} */
