@@ -1,9 +1,6 @@
 /*  
 W04_03_Number_Line_Jumps.js
 
-/*  
-W04_03_Number_Line_Jumps.js
-
 You are choreographing a circus show with various animals. For one act, you are 
 given two kangaroos on a number line ready to jump in the positive direction 
 (i.e, toward positive infinity). 
@@ -17,6 +14,7 @@ same time as part of the show. If it is possible, return YES, otherwise return N
 Example
 x1 = 2
 v1 = 1
+
 x2 = 1
 v2 = 2
 
@@ -38,7 +36,7 @@ Constraints
 
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -58,7 +56,7 @@ process.stdin.on('end', function () {
 
 function readLine() {
   return inputString[currentLine++];
-}
+} */
 
 /*
  * Complete the 'kangaroo' function below.
@@ -70,13 +68,32 @@ function readLine() {
  *  3. INTEGER x2
  *  4. INTEGER v2
  */
+/* let x1 = 1;
+let v1 = 2;
+
+let x2 = 61;
+let v2 = 3; */
+
+let x1 = 5;
+let v1 = 7;
+
+let x2 = 23;
+let v2 = 3;
+
+console.log( "kangaroo(): ", kangaroo(x1, v1, x2, v2) );
 
 function kangaroo(x1, v1, x2, v2) {
   // Write your code here
+  if ( (x1 < x2 && v1 < v2) || (x2 < x1 && v2 < v1)) return 'NO';
+  
+  let diff = Math.abs(x1 - x2);
+  let decrement = Math.abs(v1 - v2);
 
+  if(diff % decrement === 0) return 'YES';
+  else return 'NO';
 }
 
-function main() {
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const firstMultipleInput = readLine().replace(/\s+$/g, '').split(' ');
@@ -94,4 +111,4 @@ function main() {
   ws.write(result + '\n');
 
   ws.end();
-}
+} */
