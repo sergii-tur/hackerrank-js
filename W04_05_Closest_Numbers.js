@@ -68,7 +68,7 @@ Here, the minimum difference is 1. Valid pairs are (2, 3), (3, 4), and (4, 5).
 
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -88,7 +88,7 @@ process.stdin.on('end', function () {
 
 function readLine() {
   return inputString[currentLine++];
-}
+} */
 
 /*
  * Complete the 'closestNumbers' function below.
@@ -96,13 +96,41 @@ function readLine() {
  * The function is expected to return an INTEGER_ARRAY.
  * The function accepts INTEGER_ARRAY arr as parameter.
  */
+let arr = [5, 4, 3, 2]; // 2 3 3 4 4 5
+//arr = [-20, -3916237, -357920, -3620601, 7374819, -7330761, 30, 6246457, -6461594, 266854, -520, -470];
+// Output -520 -470 -20 30
+
+//arr = [-20, -3916237, -357920, -3620601, 7374819, -7330761, 30, 6246457, -6461594, 266854];
+// Output -20 30
+
+closestNumbers(arr);
 
 function closestNumbers(arr) {
   // Write your code here
+  arr.sort((a, b) => a - b);
+  let closestArr = [];
+  let absDiff = Math.abs(arr[0] - arr[1]);
+  let minDiff = Math.abs(arr[0] - arr[1])
+  
+  console.log(arr);
 
+  for (let i = 0; i < arr.length-1; i++) {
+    absDiff = Math.abs(arr[i] - arr[i+1]);
+    minDiff = Math.min(minDiff, absDiff);
+  }
+
+  for (let i = 0; i < arr.length-1; i++) {
+    absDiff = Math.abs(arr[i] - arr[i+1]);
+    if (absDiff === minDiff) closestArr.push(arr[i], arr[i+1]);
+  }
+
+  console.log("minDiff = " + minDiff);
+  console.log(closestArr);
+
+  return closestArr;
 }
 
-function main() {
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const n = parseInt(readLine().trim(), 10);
@@ -114,4 +142,4 @@ function main() {
   ws.write(result.join(' ') + '\n');
 
   ws.end();
-}
+} */
