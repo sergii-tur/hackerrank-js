@@ -20,6 +20,7 @@ There are 2 towers, each 6 units tall. Player 1 has a choice of two moves:
 - remove 5 pieces to leave 1
 
 Let Player 1 remove 3. Now the towers are 3 and 6 units tall.
+Player 2  matches the move. Now the towers are both 3 units tall. 
 Now Player 1 has only one move. 
 Player 1 removes 2 pieces leaving 1. Towers are 1 and 2 units tall. 
 Player 2 matches again. Towers are both 1 unit tall. 
@@ -66,7 +67,7 @@ Because P2 has no possible move, P1 wins.
 
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -86,7 +87,7 @@ process.stdin.on('end', function () {
 
 function readLine() {
   return inputString[currentLine++];
-}
+} */
 
 /*
  * Complete the 'towerBreakers' function below.
@@ -96,13 +97,79 @@ function readLine() {
  *  1. INTEGER n
  *  2. INTEGER m
  */
+let n = 2;
+let m = 6; // 2
+/* n = 1;
+m = 4; */
+n = 2;
+m = 2; // 2
 
+/* n = 1;
+m = 7; // 1 */
+
+/* n = 3;
+m = 7; // 1 */
+/* 
+2 2     n = 2, m = 2 // 2
+1 4     n = 1, m = 4 // 1
+
+Sample Output
+2
+1
+
+*/
+
+//console.log( towerBreakers(n, m) );
+console.log( towerBreakers2(n, m) );
+
+function towerBreakers2(n, m) {
+  return (m == 1 || n % 2 == 0) ? 2 : 1;
+}
 function towerBreakers(n, m) {
   // Write your code here
+  let towers = [];
+  let player = 1;
+  let max = 0;
+  let minTowers  = 0;
+  
+  // initialize array of n towers
+  for (let i = 0; i < n; i++) {
+    towers[i] = m;
+  }
 
+  // autowin if n = 1
+  if (n === 1) {
+    return 1;
+  }
+
+  while (true) {
+    for (let i = 0; i < n; i++) {
+      for (let j = 0; j < n; j++) {
+        if  (towers[j] === 1) minTowers++;  
+      }
+      if (minTowers === n) return player === 1 ? 2 : 1;
+      else {
+        if (minTowers === n-1) {
+          return player;
+        }
+        minTowers = 0;
+      }
+
+      if (towers[i] % 2 === 0) {
+        console.log("Player " + player + ": " + towers[i] + " -> " + towers[i]/2);
+        towers[i] = towers[i] / 2;
+      } else {
+        console.log("Player " + player + ": " + towers[i] + " -> " + 1);
+        towers[i] = 1;
+      }
+      player === 1 ? player = 2 : player = 1; 
+    }
+  }
+  
+  return 0;
 }
 
-function main() {
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const t = parseInt(readLine().trim(), 10);
@@ -120,4 +187,4 @@ function main() {
   }
 
   ws.end();
-}
+} */
