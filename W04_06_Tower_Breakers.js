@@ -120,53 +120,10 @@ Sample Output
 */
 
 //console.log( towerBreakers(n, m) );
-console.log( towerBreakers2(n, m) );
+console.log( towerBreakers(n, m) );
 
-function towerBreakers2(n, m) {
-  return (m == 1 || n % 2 == 0) ? 2 : 1;
-}
 function towerBreakers(n, m) {
-  // Write your code here
-  let towers = [];
-  let player = 1;
-  let max = 0;
-  let minTowers  = 0;
-  
-  // initialize array of n towers
-  for (let i = 0; i < n; i++) {
-    towers[i] = m;
-  }
-
-  // autowin if n = 1
-  if (n === 1) {
-    return 1;
-  }
-
-  while (true) {
-    for (let i = 0; i < n; i++) {
-      for (let j = 0; j < n; j++) {
-        if  (towers[j] === 1) minTowers++;  
-      }
-      if (minTowers === n) return player === 1 ? 2 : 1;
-      else {
-        if (minTowers === n-1) {
-          return player;
-        }
-        minTowers = 0;
-      }
-
-      if (towers[i] % 2 === 0) {
-        console.log("Player " + player + ": " + towers[i] + " -> " + towers[i]/2);
-        towers[i] = towers[i] / 2;
-      } else {
-        console.log("Player " + player + ": " + towers[i] + " -> " + 1);
-        towers[i] = 1;
-      }
-      player === 1 ? player = 2 : player = 1; 
-    }
-  }
-  
-  return 0;
+  return (m == 1 || n % 2 == 0) ? 2 : 1;
 }
 
 /* function main() {

@@ -12,7 +12,8 @@ There are 3 pairs of numbers: [-2, 2], [-2, 4] and [2, 4]. The absolute differen
 |(-2) - 2| = 4, |(-2) - 4| = 6 and |2 - 4| = 2. The minimum absolute difference is 2.
 
 Function Description
-Complete the minimumAbsoluteDifference function in the editor below. It should return an integer that represents the minimum absolute difference between any pair of elements.
+Complete the minimumAbsoluteDifference function in the editor below. It should return an integer that 
+represents the minimum absolute difference between any pair of elements.
 minimumAbsoluteDifference has the following parameter(s): 
 int arr[n]: an array of integers
 
@@ -31,7 +32,7 @@ Constraints
 
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -51,7 +52,7 @@ process.stdin.on('end', function () {
 
 function readLine() {
   return inputString[currentLine++];
-}
+} */
 
 /*
  * Complete the 'minimumAbsoluteDifference' function below.
@@ -60,12 +61,27 @@ function readLine() {
  * The function accepts INTEGER_ARRAY arr as parameter.
  */
 
+let arr = [-2, 2, 4];
+
+console.log(minimumAbsoluteDifference(arr));
+
 function minimumAbsoluteDifference(arr) {
   // Write your code here
+  let absMin = Infinity;
+  let size = arr.length;
 
+  arr.sort((a, b) => a - b);
+
+  for (let i = 0; i < size-1; i++) {
+    if (Math.abs(arr[i+1] - arr[i]) < absMin ) {
+      absMin = Math.abs(arr[i+1] - arr[i]);
+    }
+  }
+
+  return absMin;
 }
 
-function main() {
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const n = parseInt(readLine().trim(), 10);
@@ -77,4 +93,4 @@ function main() {
   ws.write(result + '\n');
 
   ws.end();
-}
+} */
