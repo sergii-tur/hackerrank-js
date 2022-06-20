@@ -57,7 +57,7 @@ i -> k
 
 'use strict';
 
-const fs = require('fs');
+/* const fs = require('fs');
 
 process.stdin.resume();
 process.stdin.setEncoding('utf-8');
@@ -78,7 +78,7 @@ process.stdin.on('end', function () {
 function readLine() {
   return inputString[currentLine++];
 }
-
+ */
 /*
  * Complete the 'caesarCipher' function below.
  *
@@ -88,12 +88,59 @@ function readLine() {
  *  2. INTEGER k
  */
 
+let s = "There's-a-starman-waiting-in-the-sky";
+let k = 26;
+
+s = "Always-Look-on-the-Bright-Side-of-Life";
+k = 100;
+
+console.log(caesarCipher(s, k));
+
 function caesarCipher(s, k) {
   // Write your code here
+  let cipher = '';
+  let charCode = 0;
+  let kOver = 0;
+  
+  console.log(s);
+  
+  if (k === 0 || k === 26) return s;
+  if (k > 26) k = k % 26; 
+  
+  for (let i = 0; i < s.length; i++) {
+    charCode = s.charCodeAt(i);
 
+    // Lower Case from 97 to 122
+    if (charCode >= 97 && charCode <= 122) {
+      if ( (charCode + k) > 122) {
+        kOver = (charCode + k) - 122 - 1;
+        cipher += String.fromCharCode(97 + kOver);
+        //console.log( String.fromCharCode(charCode) + " -> " + String.fromCharCode(97 + kOver) + " lowercase overflow");
+      } else {
+        //console.log( String.fromCharCode(charCode) + " -> " + String.fromCharCode(charCode + k) );
+        cipher += String.fromCharCode(charCode + k);
+      }
+    }
+    // Upper Case from 65 to 90
+    else if (charCode >= 65 && charCode <= 90) {
+      if ( (charCode + k) > 90) {
+        kOver = (charCode +  k) - 90 - 1;
+        cipher += String.fromCharCode(65 + kOver);
+        //console.log( String.fromCharCode(charCode) + " -> " + String.fromCharCode(65 + kOver) + " uppercase overflow");
+      } else {
+        //console.log( String.fromCharCode(charCode) + " -> " + String.fromCharCode(charCode + k) );
+        cipher += String.fromCharCode(charCode + k);
+      }
+    }
+    else {
+      cipher += s[i];
+    }
+  }
+
+  return cipher;
 }
 
-function main() {
+/* function main() {
   const ws = fs.createWriteStream(process.env.OUTPUT_PATH);
 
   const n = parseInt(readLine().trim(), 10);
@@ -107,4 +154,4 @@ function main() {
   ws.write(result + '\n');
 
   ws.end();
-}
+} */
